@@ -1,29 +1,24 @@
-const fs = require('fs');
 const express = require('express');
-const path = require('path');
-const api = require('./routes/index');
+
+//-----------------------------------------------------------------------------//
+
+const indexRoute = require('./routes/index');
+const serverRoute = require('./routes/server');
+
+//-----------------------------------------------------------------------------//
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const port = process.env.PORT || 3001;
+
+//-----------------------------------------------------------------------------//
 
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-app.use('/api', api);
-
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-app.get('/', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/index.html'))
-);
+app.use('/', indexRoute)
+app.use('/', serverRoute)
 
-app.get('/notes', (req, res) =>
-  res.sendFile(path.join(__dirname, './public/notes.html'))
-);
-
-app.get('*', (req, res) =>
-  res.sendFile(path.join(__dirname, 'public/404.html'))
-);
-
-app.listen(PORT, () =>
-  console.log(`App listening at http://localhost:${PORT} 🚀`)
+app.listen(port, () =>
+  console.log(`Example app listening at http://localhost:${port}`)
 );

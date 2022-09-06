@@ -1,14 +1,6 @@
 [
     {
-        "title":"Workout",
-        "text":"I need to work out today before class."
-    },
-    {
-        "title":"class",
-        "text":"roll through the activities covered in class right after class."
-    },
-    {
-        "title":"dinner",
-        "text":"I need to cook dinner with extra chicken."
+        "title": "Test Title",
+        "text": "Test Text"
     }
 ]
